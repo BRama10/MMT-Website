@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <svelte:head>
     <meta charset="utf-8" />
     <meta
       name="description"
@@ -53,8 +53,8 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    %svelte.head%
-  </head>
+    %sveltekit.head%
+  </svelte:head>
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript
@@ -67,6 +67,6 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div style="min-height: 100vh">%svelte.body%</div>
+    <div style="min-height: 100vh">%sveltekit.body%</div>
   </body>
 </html>

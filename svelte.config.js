@@ -5,10 +5,11 @@ const config = {
 	kit: {
 		adapter: adapter(),
 
+		// Override your override since outdated
 		// Override http methods in the Todo forms
-		methodOverride: {
-			allowed: ['PATCH', 'DELETE']
-		}
+		// methodOverride: {
+		// 	allowed: ['PATCH', 'DELETE']
+		// }
 	}
 };
 

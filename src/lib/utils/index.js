@@ -3,11 +3,16 @@
  * @param {string} str
  */
 export function splitStringIntoList(str) {
-    str = str.slice(1, -1);
-    const list = str.split('","');
+    // Remove the enclosing quotes and brackets
+    str = str.slice(2, -2);
   
-    list[0] = list[0].slice(1);
-    list[list.length - 1] = list[list.length - 1].slice(0, -1);
+    // Split the string into an array of strings
+    const list = str.split(",");
+
+   
   
+    list[0] = list[0].slice(0, (list[0].indexOf('"')))
+    list[1] = list[1].slice(list[1].indexOf('"')+1)
+    // console.log(list);
     return list;
-}
+  }

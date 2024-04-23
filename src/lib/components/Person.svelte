@@ -1,10 +1,16 @@
 <script>
-  export let Member;
+// @ts-nocheck
+
+  /**
+	 * @type {{ [x: string]: any; bio: string | any[]; name: string | any[]; email: any; namef: any; namel: any; pic1path: any; d: boolean; ce: boolean; cd: boolean; pw: boolean; t: boolean; td: boolean; vp: boolean; displayname: any; pic2path: any; }}
+	 */
+   export let Member;
   export let themecolor;
   export let tab;
 
   let textsize = 0.9;
   let len = Member.bio.length;
+
   if (len > 400) {
     textsize = 0.6;
   } else if (len > 300) {
@@ -14,7 +20,7 @@
   }
 
   let namesize = 1.8;
-  let namelen = Member.displayname.length;
+  let namelen = Member.name.length;
   if (namelen > 18) {
     namesize = 1.6;
   } else if (namelen < 16) {
@@ -39,7 +45,7 @@
     <div class="card-side-inner">
       <div class="card-side-front person-details">
         <a
-          href="mailto:{Member.email}?subject=Mail to {Member.namef} {Member.namel}"
+          href="mailto:{Member.email}?subject=Mail to {Member.name.split(' ')[0].trim()} {Member.name.split(' ')[1].trim()}"
           style="position:absolute; top:8px; right:10px;"
         >
           <BoopAction boopParams={{ y: 5, timing: 200 }}>
@@ -56,8 +62,8 @@
           <div class="person-pic">
             <img
               class="person-img"
-              src={Member.pic1path}
-              alt={Member.namef}
+              src={Member.pic_urls[0]}
+              alt={Member.name.split(' ')[0].trim()}
               width="130"
               height="130"
               style="object-fit: cover; border-radius: 25px;"
@@ -131,7 +137,7 @@
               class="name"
               style="font-size: {namesize}em; color:{themecolor};"
             >
-              {Member.displayname}
+              {Member.name}
             </span>
             {#if Member[tab.role + "role"]}
               <br />

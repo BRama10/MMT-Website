@@ -1,9 +1,7 @@
 <script>
-    import Heading from '$lib/components/Heading.svelte';
-    import Dropdown from '$lib/components/Dropdown.svelte';
+// @ts-nocheck
+
     import PanelBox from '$lib/components/PanelBox.svelte';
-    import Link from '$lib/components/Link.svelte';
-    import Button from '$lib/components/Button.svelte';
     import PageHeader from '$lib/components/PageHeader.svelte';
 
     const competitions = [        
@@ -33,6 +31,7 @@
 <section style="padding: 30px;">
     {#each competitions as competition, i}
     <PanelBox>
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div on:mouseenter={() => toggleArrow(i)} on:mouseleave={() => toggleArrow(i)}>
             <a class="headerButton" href="/competitions/{competition.location}">
                 <p class="headerButton" id={competition.location}>{competition.title}</p>

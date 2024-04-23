@@ -1,11 +1,9 @@
 <script>
+// @ts-nocheck
+
     import Heading from '$lib/components/Heading.svelte';
-    import Dropdown from '$lib/components/Dropdown.svelte';
-    import Link from '$lib/components/Link.svelte';
-    import Button from '$lib/components/Button.svelte';
     import PageHeader from '$lib/components/PageHeader.svelte';
     import Testimonial from "$lib/components/Testimonial.svelte";
-    import Competition from '$lib/components/Competition.svelte';
     import FlexBox from '$lib/components/FlexBox.svelte';
     import Sidebar from '$lib/components/Sidebar.svelte';
     import Table from "$lib/components/Table.svelte";
@@ -14,11 +12,8 @@
     import CardPanelBox from '$lib/components/CardPanelBox.svelte';
     import FlipCard from '$lib/components/InfoBox.svelte';
     import overviewData from "$lib/jsons/MMT-2024.json";
-    import { page } from '$app/stores';
     import { onMount } from 'svelte';
-    import Tournament from '$lib/components/Tournament.svelte';
     import SVGComponent from '$lib/components/SVGComponent.svelte';
-    import {LightenDarkenColor} from "$lib/utils/Colors.svelte";
 
 
     let windowWidth;

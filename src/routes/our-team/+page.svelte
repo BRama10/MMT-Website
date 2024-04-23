@@ -148,8 +148,4 @@
 		flex-basis: 100%;
 		height: 20px;
 	}
-	.enter {
-		flex-basis: 100%;
-		height: 0px;
-	}
 </style>

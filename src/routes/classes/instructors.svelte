@@ -1,4 +1,5 @@
 <script>
+     // @ts-nocheck
     import InfoPerson from '$lib/components/InfoPerson.svelte';
     import FlexBox from '$lib/components/FlexBox.svelte';
     import PageHeader from '$lib/components/PageHeader.svelte';

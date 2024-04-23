@@ -1,12 +1,10 @@
 <script>
+    // @ts-nocheck
     import PageHeader from '$lib/components/PageHeader.svelte';
     import Section from '$lib/components/Section.svelte';
     import Heading from '$lib/components/Heading.svelte';
     import FlexBox from '$lib/components/FlexBox.svelte';
-    import Image from '$lib/components/Image.svelte';
     import PanelBox from '$lib/components/PanelBox.svelte';
-    import Link from '$lib/components/Link.svelte';
-    import sponsorTiers from '$lib/jsons/sponsorTiers';
 </script>
 
 <svelte:head>

@@ -1,4 +1,5 @@
 <script>
+     // @ts-nocheck
     import PageHeader from '$lib/components/PageHeader.svelte';
     import PanelBox from '$lib/components/PanelBox.svelte';
     import Link from '$lib/components/Link.svelte';

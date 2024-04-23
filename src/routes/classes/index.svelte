@@ -1,4 +1,5 @@
 <script>
+     // @ts-nocheck
     import Heading from '$lib/components/Heading.svelte';
     import FlexBox from '$lib/components/FlexBox.svelte';
     import Table from "$lib/components/Table.svelte";

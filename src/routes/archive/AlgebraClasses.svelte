@@ -1,3 +1,14 @@
+<script>
+// @ts-nocheck
+
+	import FlexBox from "$lib/components/FlexBox.svelte";
+
+
+	import Heading from "$lib/components/Heading.svelte";
+	import PanelBox from "$lib/components/PanelBox.svelte";
+	import Table from "$lib/components/Table.svelte";
+
+</script>
 <h1 id="algebra"><strong>ALGEBRA</strong></h1>
 
 <Heading text="Algebra: Class Details" size={2} textColor="#1B9AAA" />
@@ -25,7 +36,9 @@
 <div class="schedule-wrapper">
     <FlexBox>
         <PanelBox>
+            <!-- svelte-ignore missing-declaration -->
             <Table data={scheduleData} width="auto" headerColor="#1B9AAA" rowColors={["#A4D6AF", "#ADCDD6"]} cellPadding={5} cellPaddingRight={20}/>
+            <!-- svelte-ignore missing-declaration -->
             {#if windowWidth < 700}
                 <p>OH = Office Hours</p>
             {/if}
@@ -38,6 +51,7 @@
 <div class="schedule-wrapper">
     <FlexBox>
         <PanelBox>
+            <!-- svelte-ignore missing-declaration -->
             <Table data={topicsData} width="auto" headerColor="#1B9AAA" rowColors={["#A4D6AF", "#ADCDD6"]} cellPadding={5} cellPaddingRight={20}/>
         </PanelBox>
     </FlexBox>

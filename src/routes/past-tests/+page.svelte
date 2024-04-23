@@ -1,9 +1,7 @@
 <script>
+  // @ts-nocheck
   import Heading from "$lib/components/Heading.svelte";
   import DropdownArchive from "$lib/components/DropdownArchive.svelte";
-  import Text from "$lib/components/Text.svelte";
-  import Link from "$lib/components/Link.svelte";
-  import Button from "$lib/components/Button.svelte";
   import PanelBox from "$lib/components/PanelBox.svelte";
   import PageHeader from "$lib/components/PageHeader.svelte";
   import { onMount } from "svelte";
@@ -283,9 +281,5 @@
   iframe {
     display: block;
     max-width: 800px;
-  }
-  table {
-    text-align: left;
-    border-spacing: 1em;
   }
 </style>

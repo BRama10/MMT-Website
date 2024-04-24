@@ -66,70 +66,49 @@
 	<br />
 
 	<Tabs
-		{items}
+		{data.roles}
 		let:item={tab}
 		style="margin-left: 2vw; margin-right: 2vw; border-radius: 20px"
 	>
 		<div class="tab">
-			<div style="background-color: {tab.hex};">
+			<div style="background-color: {tab.color};">
 				<br />
 				<Heading
-					text={tab.label}
+					text={tab.name}
 					size={3}
-					textColor={LightenDarkenColor(tab.hex, -120)}
+					textColor={LightenDarkenColor(tab.color, -120)}
 				/>
 				<br />
 				<FlexBox wrap={true}>
-					{#each [...new Set(data.members.flatMap( (member) => splitStringIntoList(member.role), ))].sort( (a, b) => {
-							let valA = 0;
-							let valB = 0;
-
-							if (["Director", "Leads", "National Leads"].includes(a)) {
-								valA = 3;
-							} else if (["Leadership", "Test Coordinators", "Project Leads", "State Leads"].includes(a)) {
-								valA = 2;
-							} else {
-								valA = 1;
-							}
-
-							if (["Director", "Leads", "National Leads"].includes(b)) {
-								valB = 3;
-							} else if (["Leadership", "Test Coordinators", "Project Leads", "State Leads"].includes(b)) {
-								valB = 2;
-							} else {
-								valB = 1;
-							}
-
-							return valB - valA;
-						}, ) as priority}
+					{#each data.members.map((member) => member.role_name) as priority}
 						{#if data.members.filter(function (member) {
-							if (tab.role == 'org') {
-                return splitStringIntoList(member.section)[0] == tab.role && splitStringIntoList(member.role)[0] == priority;
+							if (tab.code == 'org') {
+                return splitStringIntoList(member.section)[0] == tab.code && splitStringIntoList(member.role)[0] == priority;
               } else {
-                return splitStringIntoList(member.section)[1] == tab.role && splitStringIntoList(member.role)[1] == priority;
+                return splitStringIntoList(member.section)[1] == tab.code && splitStringIntoList(member.role)[1] == priority;
               }
 						}).length > 0}
 							<Heading
 								text={priority}
 								size={2.5}
-								textColor={LightenDarkenColor(tab.hex, -120)}
+								textColor={LightenDarkenColor(tab.color, -120)}
 							/>
               <div class="break"></div>
 						{/if}
 
 						
 						{#each data.members.filter(function (member) {
-							if (tab.role == 'org') {
-                return splitStringIntoList(member.section)[0] == tab.role && splitStringIntoList(member.role)[0] == priority;
+							if (tab.code == 'org') {
+                return splitStringIntoList(member.section)[0] == tab.code && splitStringIntoList(member.role)[0] == priority;
               } else {
-                return splitStringIntoList(member.section)[1] == tab.role && splitStringIntoList(member.role)[1] == priority;
+                return splitStringIntoList(member.section)[1] == tab.code && splitStringIntoList(member.role)[1] == priority;
               }
 						}) as Member}
 							<Person
 								width="21em"
 								{Member}
 								{tab}
-								themecolor={LightenDarkenColor(tab.hex, -120)}
+								themecolor={LightenDarkenColor(tab.color, -120)}
 							/>
 						{/each}
 						<div class="break"></div>

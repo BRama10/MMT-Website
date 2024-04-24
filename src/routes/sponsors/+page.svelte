@@ -3,10 +3,11 @@
     import Section from '$lib/components/Section.svelte';
     import Heading from '$lib/components/Heading.svelte';
     import FlexBox from '$lib/components/FlexBox.svelte';
-    import Image from '$lib/components/Image.svelte';
     import PanelBox from '$lib/components/PanelBox.svelte';
     import Link from '$lib/components/Link.svelte';
-    import sponsorTiers from '$lib/jsons/sponsorTiers';
+
+    export let data;
+
 
     let windowWidth;
     let windowHeight;
@@ -50,26 +51,27 @@ https://tinyurl.com/MMSponsors2024" button_text="Sponsor Mustang Math!" button_i
     </FlexBox>
 </Section>
 
-{#each sponsorTiers as lvl}
+<!-- {#each sponsorTiers as lvl} -->
+{#each data.tiers as lvl}
     <Section>
         <br /> <br />
-        <Heading text="{lvl.name}" size={3} textColor={lvl.headerColor} />
+        <Heading text="{lvl.tier_name}" size={3} textColor={lvl.tier_color} />
             <FlexBox wrap={true} align="stretch">
-                {#if lvl.sponsors.length > 0}
-                    {#each lvl.sponsors as sponsor}
+                {#if data.sponsors.filter(sponsor => sponsor.tier_name == lvl.tier_name).length > 0}
+                    {#each data.sponsors.filter(sponsor => sponsor.tier_name == lvl.tier_name) as sponsor}
                         <PanelBox borderRadius="20px" width="40%" style="max-width: 300px; min-height: 250px; min-width: 250px;">
                             <a target="_blank" href={sponsor.link} style="height: 100%; display: flex; align-items: center;text-decoration:none;">
                                 <div>
-                                    <img src={sponsor.url} alt={sponsor.alt} style="max-width: 100%;">
-                                    {#if sponsor.blurb}
+                                    <img src={sponsor.img_url} alt={sponsor.alt_text} style="max-width: 100%;">
+                                    <!-- {#if sponsor.blurb}
                                         <p style="font-size: 11px; text-align: center;">{sponsor.blurb}</p>
-                                    {/if}
+                                    {/if} -->
                                 </div>
                             </a>
                         </PanelBox>
                     {/each}
                 {:else}
-                    <p>Become our first {lvl.singular}!</p>
+                    <p>Become our first {lvl.tier_name.slice(-1)}!</p>
                 {/if}
             </FlexBox>
     </Section>

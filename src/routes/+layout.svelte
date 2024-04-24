@@ -6,6 +6,10 @@
 	import Newsletter from '$lib/components/Newsletter.svelte';
 	import { user } from '$lib/store';
 	import { onMount } from "svelte";
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: dev ? 'development' : 'production' });
 
 	let show = false;
 
@@ -13,6 +17,10 @@
         user.subscribe((u) => (show = u));
     })
 </script>
+
+
+ 
+
 
 <div class="all-container">
     <Header />

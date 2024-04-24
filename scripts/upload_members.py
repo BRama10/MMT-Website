@@ -34,15 +34,16 @@ def process_entry(entry: dict[str, str | int]):
 
     roles = set()
 
-    for r in ["pw", "t", "d", "td", "cd", "ce", "vp"]:
-        if entry.get(r):
-            filtered['section'] = ['org', r]
-            filtered['role'] = [
-                title_keys.get(entry.get('org'+'priority')).get('org'),
-                title_keys.get(entry.get(r+'priority')).get(r),
-            ]
+    filtered['sections'] = []
+    filtered['roles'] = []
 
-            break
+
+    for r in ["org", "pw", "t", "d", "td", "cd", "ce", "vp"]:
+        if entry.get(r):
+            filtered['sections'].append(r)
+            filtered['roles'].append(
+                title_keys.get(entry.get(r+'priority')).get(r),
+            )
 
     return filtered
 
@@ -56,6 +57,8 @@ def insert_row(row: dict, client: Client):
 if __name__ == '__main__':
     count = 0
 
+    print(title_keys)
+
     for d in tqdm(data):
         try:
             row = process_entry(d)
@@ -65,5 +68,5 @@ if __name__ == '__main__':
             print(e)
         count += 1
 
-    print('DONE =>> ', count)
+    print(f'DONE =>> {count}')
 

@@ -3,20 +3,10 @@
 
     import Heading from "$lib/components/Heading.svelte";
     import Newsletter from "$lib/components/Newsletter.svelte";
-    // @ts-ignore
-    import { fly, slide, blur, fade } from "svelte/transition";
-    // @ts-ignore
-    import { quintOut } from 'svelte/easing';
+    import { fly } from "svelte/transition";
     import { onMount } from "svelte";
     import PanelBox from "$lib/components/PanelBox.svelte";
-    // @ts-ignore
-    import AnimatedElement from "$lib/components/AnimatedElement.svelte";
-    // @ts-ignore
-    import PanelBoxAnimated from "$lib/components/PanelBoxAnimated.svelte";
-    // @ts-ignore
-    import Header from "$lib/header/Header.svelte";
-    // @ts-ignore
-    import Horse from "$lib/components/Horse.svelte";
+   
 
     // need to do this to make the animation play on page load
     let visible = false;

@@ -1,4 +1,5 @@
 <script context="module">
+    // @ts-ignore
     export async function load({ url }) {
         const link = url.searchParams.get('link');
         const get = url.searchParams.get('get').replace("%26", "&") + "&link=" + link.replace("&", "%26");

@@ -2,9 +2,9 @@
   export let items = [];
   export let style;
   export let activeTabValue = 1;
-  import {LightenDarkenColor} from "$lib/utils/Colors.svelte";
 
   const handleClick = (tabValue) => () => (activeTabValue = tabValue);
+  console.log(items);
   
 </script>
 <!-- 
@@ -16,17 +16,17 @@
         <div class="rolebar">
             {#each items as item}
             <li
-                class={activeTabValue === item.value ? "active" : "inactive"}
+                class={activeTabValue === item.id ? "active" : "inactive"}
             >
-                <span style="background-color: {item.hex}" on:click={handleClick(item.value)}>{item.label}</span>
+                <span style="background-color: {item.color}" on:click={handleClick(item.id)}>{item.name}</span>
             </li>
             {/each}
         </div>
     </ul>
     <div class="content">
         {#each items as item}
-            {#if activeTabValue == item.value}
-                <div class="box" style="background-color: {item.hex} border-radius: 30px">
+            {#if activeTabValue == item.id}
+                <div class="box" style="background-color: {item.color} border-radius: 30px">
                     <slot {item} />
                 </div>
             {/if}

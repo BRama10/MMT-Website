@@ -1,16 +1,10 @@
 <script>
-// @ts-nocheck
-
-  /**
-	 * @type {{ [x: string]: any; bio: string | any[]; name: string | any[]; email: any; namef: any; namel: any; pic1path: any; d: boolean; ce: boolean; cd: boolean; pw: boolean; t: boolean; td: boolean; vp: boolean; displayname: any; pic2path: any; }}
-	 */
-   export let Member;
+  export let Member;
   export let themecolor;
   export let tab;
 
   let textsize = 0.9;
   let len = Member.bio.length;
-
   if (len > 400) {
     textsize = 0.6;
   } else if (len > 300) {
@@ -139,7 +133,7 @@
             >
               {Member.name}
             </span>
-            {#if Member[tab.role + "role"]}
+            {#if Member[tab.code + "role"]}
               <br />
               <span
                 class="role"
@@ -148,7 +142,7 @@
                   50
                 )};"
               >
-                {Member[tab.role + "role"]}
+                {Member[tab.code + "role"]}
               </span>
             {/if}
           </p>
@@ -156,7 +150,7 @@
       </div>
       <div class="card-side-back person-details">
         <a
-          href="mailto:{Member.email}?subject=Mail to {Member.namef} {Member.namel}"
+          href="mailto:{Member.email}?subject=Mail to {Member.name.split(' ')[0].trim()} {Member.name.split(' ')[1].trim()}"
           style="position:absolute; top:8px; right:10px;"
         >
           <BoopAction boopParams={{ y: 5, timing: 200 }}>
@@ -171,11 +165,11 @@
         </a>
 
         <div class="person-pic">
-          {#if Member.pic2path}
+          {#if Member.pic_urls.length == 2}
             <img
               class="person-img"
-              src={Member.pic2path}
-              alt={Member.namef}
+              src={Member.pic_urls[1]}
+              alt={Member.name.split(' ')[0].trim()}
               width="130"
               height="130"
               style="object-fit: cover; border-radius: 25px; padding-left:0px"
@@ -183,8 +177,8 @@
           {:else}
             <img
               class="person-img"
-              src={Member.pic1path}
-              alt={Member.namef}
+              src={Member.pic_urls[0]}
+              alt={Member.name.split(' ')[0].trim()}
               width="130"
               height="130"
               style="object-fit: cover; border-radius: 25px; padding-left:0px"
@@ -283,6 +277,9 @@
     padding-top: 2px;
   }
   .person-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .person-details {
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1);

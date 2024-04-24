@@ -1,5 +1,8 @@
 <script>
-    export let text;
+    /**
+	 * @type {any}
+	 */
+     export let text;
     function nullFunction(){}
 
     export let onClick = nullFunction;

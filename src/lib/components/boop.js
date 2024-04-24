@@ -7,6 +7,10 @@ function getPrefersReducedMotion() {
   return prefersReducedMotion;
 }
 
+/**
+ * @param {HTMLSpanElement} node
+ * @param {{ setter: any; }} params
+ */
 export default function boop(node, params) {	
 	let { setter } = params;
 	let springyRotation = spring({ x: 0, y: 0, rotation: 0, scale: 1} , {
@@ -15,13 +19,16 @@ export default function boop(node, params) {
 	});
 	let prefersReducedMotion = getPrefersReducedMotion();
 	
+	// @ts-ignore
 	node.style = `display: inline-block`;
 	
 	const unsubscribe = springyRotation.subscribe(({ x, y, rotation, scale }) => {
+		// @ts-ignore
 		node.style.transform = !prefersReducedMotion && `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
 	})
 	
 	return {
+		// @ts-ignore
 		update({isBooped, x = 0, y = 0, rotation = 0, scale = 1, timing}) {
 			springyRotation.set(isBooped ? { x, y, rotation, scale } : { x: 0, y: 0, rotation: 0, scale: 1});
 

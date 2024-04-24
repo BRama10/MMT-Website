@@ -32,8 +32,6 @@ export async function load() {
     return uniqueTiers;
   }  
 
-  console.log(extractUniqueTiers(data));
-
   return { 
     sponsors: data ?? [],
     tiers: extractUniqueTiers(data) ?? [],

@@ -5,7 +5,9 @@
   import { query_selector_all } from 'svelte/internal';
   
   let isInView;
-  
+
+
+  export let class_ = "";
   export let width = "unset";
   export let height = "unset";
   export let margin = "10px";

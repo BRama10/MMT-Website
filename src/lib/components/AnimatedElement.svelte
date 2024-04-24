@@ -1,45 +1,17 @@
 <script lang="ts">
-  //File is for reference only, not used anywhere in code
-  
-  
   import { fade } from 'svelte/transition';
   import { inview } from 'svelte-inview';
-  import { query_selector_all } from 'svelte/internal';
 
-  let isInView;
-
-  
+  let isInView = false;
 </script>
 
-<div
-  class="wrapper"
-  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
-  on:inview_change={(event) => {
-    const { inView, entry, scrollDirection, observer, node} = event.detail;
-    isInView = inView;
-  }}
->
+<div class="mt-8 wrapper" use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }} on:inview_change={(event) => isInView = event.detail.inView}>
   {#if isInView}
-    <div in:fade class="box">
-      <h3>Appears from nowhere</h3>
+    <div in:fade class="bg-white border border-gray-300 rounded-lg p-6 w-72">
+      <h3 class="text-lg font-semibold mb-2">Appears from nowhere</h3>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error,
-        adipisci nihil iste.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, adipisci nihil iste.
       </p>
     </div>
-
   {/if}
 </div>
-
-<style>
-  .wrapper {
-    margin-top: 30px;
-  }
-
-  .box {
-    width: 300px;
-    border: 1px solid rgb(221, 221, 221);
-    padding: 25px;
-    border-radius: 10px;
-  }
-</style>

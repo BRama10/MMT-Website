@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import PageHeader from '$lib/components/PageHeader.svelte';
     import Section from '$lib/components/Section.svelte';
     import Heading from '$lib/components/Heading.svelte';
@@ -7,28 +9,8 @@
     import Link from '$lib/components/Link.svelte';
 
     export let data;
-
-
-    let windowWidth;
-    let windowHeight;
-    let learnMoreIsVisible = true;
-    let y;
-    let scrollOpacity = 1;
-    $: scrollOpacity = Math.max((windowHeight - 2 * y) / windowHeight, 0);
-    $: learnMoreIsVisible = scrollOpacity > 0;
-
-    function scrollToElem(e) {
-        e.scrollIntoView({
-            behavior: "smooth",
-        });
-    }
 </script>
 
-<svelte:window
-    bind:scrollY={y}
-    bind:innerWidth={windowWidth}
-    bind:innerHeight={windowHeight}
-/>
 
 <svelte:head>
 	<title>Partners and Sponsors</title>

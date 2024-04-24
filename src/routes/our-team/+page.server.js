@@ -5,10 +5,6 @@ export async function load() {
   const hierarchy = await supabase.from('hierarchy').select();
   const roles = await supabase.from('hierarchy_static').select();
 
-  console.log(data);
-  console.log(hierarchy)
-  console.log(roles);
-
   return {
     members: data ?? [],
     hierarchy: hierarchy.data ?? [],

@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script>
 	// @ts-nocheck
 	import FlexBox from "$lib/components/FlexBox.svelte";
@@ -11,49 +7,15 @@
 	import Tabs from "$lib/components/Tabs.svelte";
 	import { LightenDarkenColor } from "$lib/utils/Colors.svelte";
 
-	import { splitStringIntoList } from "$lib/utils";
+  export let data;
 
-	// List of tab items with labels, values and assigned components
-	let items = [
-		{ label: "All Members", role: "org", value: 1, hex: "#cccccc" },
-		{ label: "Community Engagement", role: "ce", value: 2, hex: "#efe9cb" },
-		{ label: "Curriculum Development", role: "cd", value: 3, hex: "#d7efcb" },
-		{ label: "Design", role: "d", value: 4, hex: "#cbefdf" },
-		{ label: "Problem Writing", role: "pw", value: 5, hex: "#cbe1ef" },
-		{ label: "Technology", role: "t", value: 6, hex: "#d5cbef" },
-		{ label: "Tournament Development", role: "td", value: 7, hex: "#efcbeb" },
-		{ label: "Video Production", role: "vp", value: 8, hex: "#efcbcc" },
-	];
-
-	let roles = {
-		pw: "Problem Writing",
-		t: "Tech",
-		d: "Design",
-		td: "Tournament Development",
-		cd: "Curriculum Development",
-		ce: "Community Engagement",
-		vp: "Video Production",
-	};
-
-	/**
-	 * @type {any}
-	 */
-	let windowWidth;
-
-	let allRoles = Object.keys(roles);
-	let currentPriority = 0;
-
-	let setPriority = (/** @type {number} */ priority) =>
-		(currentPriority = priority);
-
-	export let data;
+  //i blame svelte for this line since my linter is being very unhelpful and i have NO CLUE WHY TF I CANT USE EXPORTED VARIABLES
+  let items = data.roles;
 </script>
 
 <svelte:head>
 	<title>Our Team</title>
 </svelte:head>
-
-<svelte:window bind:innerWidth={windowWidth} />
 
 <PageHeader
 	title="Meet the Team"
@@ -66,11 +28,11 @@
 	<br />
 
 	<Tabs
-		{data.roles}
+		{items}
 		let:item={tab}
 		style="margin-left: 2vw; margin-right: 2vw; border-radius: 20px"
 	>
-		<div class="tab">
+		<div class="rounded-[200px]">
 			<div style="background-color: {tab.color};">
 				<br />
 				<Heading
@@ -80,29 +42,27 @@
 				/>
 				<br />
 				<FlexBox wrap={true}>
-					{#each data.members.map((member) => member.role_name) as priority}
+					{#each data.hierarchy.map((h) => h.role_name) as priority}
 						{#if data.members.filter(function (member) {
-							if (tab.code == 'org') {
-                return splitStringIntoList(member.section)[0] == tab.code && splitStringIntoList(member.role)[0] == priority;
-              } else {
-                return splitStringIntoList(member.section)[1] == tab.code && splitStringIntoList(member.role)[1] == priority;
-              }
+              const roleIndex = member.roles.indexOf(priority);
+              const sectionIndex = member.sections.indexOf(tab.code);
+
+              return (roleIndex != -1 && sectionIndex != -1) && (roleIndex == sectionIndex)
 						}).length > 0}
 							<Heading
 								text={priority}
 								size={2.5}
 								textColor={LightenDarkenColor(tab.color, -120)}
 							/>
-              <div class="break"></div>
+              <div class="basis-full h-[20px]"></div>
 						{/if}
 
 						
 						{#each data.members.filter(function (member) {
-							if (tab.code == 'org') {
-                return splitStringIntoList(member.section)[0] == tab.code && splitStringIntoList(member.role)[0] == priority;
-              } else {
-                return splitStringIntoList(member.section)[1] == tab.code && splitStringIntoList(member.role)[1] == priority;
-              }
+							const roleIndex = member.roles.indexOf(priority);
+              const sectionIndex = member.sections.indexOf(tab.code);
+
+              return (roleIndex != -1 && sectionIndex != -1) && (roleIndex == sectionIndex)
 						}) as Member}
 							<Person
 								width="21em"
@@ -111,20 +71,10 @@
 								themecolor={LightenDarkenColor(tab.color, -120)}
 							/>
 						{/each}
-						<div class="break"></div>
+						<div class="basis-full h-[20px]"></div>
 					{/each}
 				</FlexBox>
 			</div>
 		</div>
 	</Tabs>
 </section>
-
-<style>
-	.tab {
-		border-radius: 200px;
-	}
-	.break {
-		flex-basis: 100%;
-		height: 20px;
-	}
-</style>
